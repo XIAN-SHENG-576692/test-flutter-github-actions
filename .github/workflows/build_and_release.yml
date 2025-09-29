@@ -48,29 +48,25 @@ jobs:
       - name: 🍈 Setup Melos
         uses: bluefireteam/melos-action@v3
 
-      - name: 📂 Change Directory
-        run: |
-          echo $PWD
-          cd ./apps/app_a
-          echo $PWD
-
       - name: 📥 Get dependencies
         run: |
-          echo $PWD
+          cd ./apps/app_a
           flutter pub get
 
       - name: ✅ Run tests
         run: |
-          echo $PWD
+          cd ./apps/app_a
           flutter test --coverage
 
       - name: 🏗️ Build APKs
-        run: flutter build apk --release --split-per-abi
+        run: |
+          cd ./apps/app_a
+          flutter build apk --release --split-per-abi
 
       - name: 📦 Prepare artifacts
         run: |
           mkdir -p artifacts
-          mv build/app/outputs/flutter-apk/*.apk artifacts/app_a.apk
+          mv ./apps/app_a/build/app/outputs/flutter-apk/*.apk artifacts/app_a.apk
 
       - name: 🏷️ Create or update Release
         uses: ncipollo/release-action@v1.16.0
