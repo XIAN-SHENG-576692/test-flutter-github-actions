@@ -50,13 +50,19 @@ jobs:
 
       - name: 📂 Change Directory
         run: |
+          echo $PWD
           cd ./apps/app_a
+          echo $PWD
 
       - name: 📥 Get dependencies
-        run: flutter pub get
+        run: |
+          echo $PWD
+          flutter pub get
 
       - name: ✅ Run tests
-        run: flutter test --coverage
+        run: |
+          echo $PWD
+          flutter test --coverage
 
       - name: 🏗️ Build APKs
         run: flutter build apk --release --split-per-abi
