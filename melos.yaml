@@ -1,0 +1,20 @@
+name: test_melos
+
+packages:
+  - packages/**
+  - apps/**
+
+scripts:
+  analyze:
+    run: dart analyze .
+    description: Run dart analyze on all packages
+  format:
+    run: dart format --set-exit-if-changed .
+    description: Format all packages
+  test:
+    run: flutter test
+    description: Run tests in all packages
+
+dependencyOverrides:
+  cupertino_icons: ^1.0.8
+  flutter_ringtone_player: ^4.0.0+4
