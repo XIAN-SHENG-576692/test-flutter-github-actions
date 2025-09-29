@@ -3,8 +3,12 @@ name: 🛠 Build & Release App A
 on:
   push:
     branches: [ app/app_a ]
+    tags:
+      - 'v*'
   pull_request:
     branches: [ app/app_a ]
+    tags:
+      - 'v*'
 
 permissions:
   contents: write   # allow creating/updating Releases & uploading assets
