@@ -68,15 +68,15 @@ jobs:
           mkdir -p artifacts
           mv ./apps/app_a/build/app/outputs/flutter-apk/*.apk artifacts
           cd artifacts
-          mv app-arm64-v8a-release.apk app_aaaaa-arm64-v8a-release.apk.apk
-          mv app-armeabi-v7a-release.apk app_aaaaa-armeabi-v7a-release.apk.apk
-          mv app-x86_64-release.apk app_aaaaa-x86_64-release.apk.apk
+          mv app-arm64-v8a-release.apk app_a-arm64-v8a-release.apk.apk
+          mv app-armeabi-v7a-release.apk app_a-armeabi-v7a-release.apk.apk
+          mv app-x86_64-release.apk app_a-x86_64-release.apk.apk
 
       - name: 🏷️ Create or update Release
         uses: ncipollo/release-action@v1.16.0
         with:
           tag:       v1.2.9
-          name:      Release v1.2.9
+          name:      Release New
           artifacts: artifacts/*.apk
           token:     ${{ secrets.GITHUB_TOKEN }}
 
