@@ -1,0 +1,33 @@
+name: 🛠 Test Release
+
+on:
+  push:
+    branches: [ test0 ]
+    tags:
+      - 'test0/v*'
+  pull_request:
+    branches: [ test0 ]
+    tags:
+      - 'test0/v*'
+
+permissions:
+  contents: write   # allow creating/updating Releases & uploading assets
+  actions:  read    # allow pulling marketplace actions
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build_and_release_android:
+    name: Test Release
+    if: startsWith(github.ref_name, 'test0/v')
+    
+    steps:
+      - name: 🏷️ Create or update Release
+        uses: ncipollo/release-action@v1.16.0
+        with:
+          tag:       ${{ github.ref_name }}
+          name:      Release ${{ github.ref_name }}
+          artifacts: artifacts/*
+          token:     ${{ secrets.GITHUB_TOKEN }}
