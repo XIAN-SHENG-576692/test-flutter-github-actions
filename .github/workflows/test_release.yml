@@ -32,3 +32,10 @@ jobs:
           name:      Release ${{ github.ref_name }}
           artifacts: artifacts/*
           token:     ${{ secrets.GITHUB_TOKEN }}
+          allowUpdates: true
+          omitBody: true
+          omitBodyDuringUpdate: true
+          omitNameDuringUpdate: true
+          omitPrereleaseDuringUpdate: true
+          replacesArtifacts: true
+          removeArtifacts: false
