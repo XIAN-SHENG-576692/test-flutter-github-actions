@@ -1,0 +1,26 @@
+name: 🛠 Test Actions B
+
+on:
+  push:
+    tags:
+      - 'actionsB/v*'
+  pull_request:
+    tags:
+      - 'actionsB/v*'
+
+permissions:
+  contents: write   # allow creating/updating Releases & uploading assets
+  actions:  read    # allow pulling marketplace actions
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build_and_release_android:
+    name: Test Actions B
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: ✅ Run tests
+        run: |
